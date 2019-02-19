@@ -3,7 +3,7 @@
 
 #include "config_common.h"
 
-#define TAPPING_TERM 450
+#define TAPPING_TERM 200
 
 #ifdef AUDIO_ENABLE
     #define STARTUP_SONG SONG(PREONIC_SOUND)
