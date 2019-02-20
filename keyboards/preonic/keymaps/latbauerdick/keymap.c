@@ -45,6 +45,7 @@ enum preonic_keycodes {
 #define CTL_ESC  MT(MOD_LCTL, KC_ESC)
 #define CTL_TAB  MT(MOD_LCTL, KC_TAB)
 #define CTL_QUOT MT(MOD_LCTL, KC_QUOT)
+#define CTL_SPC  MT(MOD_LCTL, KC_SPC)
 #define CTL_RET  MT(MOD_RCTL, KC_ENT)
 #define GUI_LEFT MT(MOD_RGUI, KC_LEFT)
 
@@ -58,9 +59,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+------+------+------+------+-------------+------+------+------+------+------|
  * |  ⇥/^ | A/NAV|   S  |   D  |   F  |   G  |   H  |   J  |   K  |   L  | ;/NAV| Ret/⌃|
  * |------+------+------+------+------+------|------+------+------+------+------+------|
- * |   ⇧  |   Z  |   X  |   C  |   V  |   B  |   N  |   M  |   ,  |   .  |   /  | Ret/⇧|
+ * | (/⇧  |   Z  |   X  |   C  |   V  |   B  |   N  |   M  |   ,  |   .  |   /  |  )/⇧ |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
- * | Lower| Space|  ⌥   |   ⌘  | Lower| Bksp |Space |Raise |⌘/Left| Down |  Up  |->/Rai|
+ * | Lower| Spc/^|  ⌥   |   ⌘  | Lower| Bksp |Space |Raise |Left/⌘| Down |  Up  |->/Rai|
  * `-----------------------------------------------------------------------------------'
  */
 [_QWERTY] = LAYOUT_preonic_grid( \
@@ -68,7 +69,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   KC_ESC,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,     KC_BSPC,
   CTL_TAB, NAV_A,   KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L,    NAV_SCLN, CTL_RET,
   KC_LSPO, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH,  KC_RSPC,
-  LOWER,   KC_SPC,  KC_LALT, KC_LGUI, LOWER,   KC_BSPC, KC_SPC,  RAISE,   GUI_LEFT,KC_DOWN, KC_UP,    RAI_RGHT
+  LOWER,   CTL_SPC, KC_LALT, KC_LGUI, LOWER,   KC_BSPC, KC_SPC,  RAISE,   GUI_LEFT,KC_DOWN, KC_UP,    RAI_RGHT
 ),
 
 /* Colemak
@@ -81,7 +82,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+------+------+------+------+------|------+------+------+------+------+------|
  * | Shift|   Z  |   X  |   C  |   V  |   B  |   K  |   M  |   ,  |   .  |   /  | Ret/⇧|
  * |------+------+------+------+------+------+------+------+------+------+------+------|
- * | Lower| Space|  ⌥   |   ⌘  |Lower | Bksp |Space |Raise |Left/⌘| Down |  Up  |->/Rai|
+ * | Lower| Spc/^|  ⌥   |   ⌘  | Lower| Bksp |Space |Raise |Left/⌘| Down |  Up  |->/Rai|
  * `-----------------------------------------------------------------------------------'
  */
 [_COLEMAK] = LAYOUT_preonic_grid( \
