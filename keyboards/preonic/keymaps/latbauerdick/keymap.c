@@ -38,6 +38,15 @@ enum preonic_keycodes {
   BACKLIT
 };
 
+//Tap Dance Declarations
+enum {
+  CT_QE = 0,
+  CT_CLN,
+  CT_DE,
+  CT_JESC,
+  X_TAP_DANCE
+};
+
 #define LOWER MO(_LOWER)
 #define RAISE MO(_RAISE)
 #define NAV_A    LT(_NAV, KC_A)
@@ -53,10 +62,10 @@ enum preonic_keycodes {
 
 #define CTL_ESC  MT(MOD_LCTL, KC_ESC)
 #define CTL_TAB  MT(MOD_LCTL, KC_TAB)
-#define CTL_QUOT MT(MOD_LCTL, KC_QUOT)
 #define CTL_SPC  MT(MOD_LCTL, KC_SPC)
+#define CTL_QUT  MT(MOD_RCTL, KC_QUOT)
 #define CTL_RET  MT(MOD_RCTL, KC_ENT)
-#define GUI_LEFT MT(MOD_RGUI, KC_LEFT)
+#define GUI_LFT  MT(MOD_RGUI, KC_LEFT)
 #define GUI_TAB  MT(MOD_LGUI, KC_TAB)
 #define GUI_ESC  MT(MOD_LGUI, KC_ESC)
 #define ALT_ESC  MT(MOD_LALT, KC_ESC)
@@ -64,6 +73,8 @@ enum preonic_keycodes {
 #define LSF_TAB  MT(MOD_LSFT, KC_TAB)
 #define RSF_SPC  MT(MOD_RSFT, KC_SPC)
 #define RSF_BSP  MT(MOD_RSFT, KC_BSPC)
+#define RSF_RET  MT(MOD_RSFT, KC_ENT)
+#define TD_JESC  TD(CT_JESC)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
@@ -73,19 +84,19 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+------+------+------+------+------+------+------+------+------+------+------|
  * |   ⇥  |   Q  |   W  |   E  |   R  |   T  |   Y  |   U  |   I  |   O  |   P  | Bksp |
  * |------+------+------+------+------+-------------+------+------+------+------+------|
- * | Esc/^| A/NAV|   S  |   D  |   F  |   G  |   H  |   J  |   K  |   L  | ;/NAV| Ret/⌃|
+ * | Esc/^| A/NAV|   S  |   D  |   F  |   G  |   H  |   J  |   K  |   L  | ;/NAV|  '/⌃ |
  * |------+------+------+------+------+------|------+------+------+------+------+------|
- * |  (/⇧ |   Z  |   X  |   C  |   V  |   B  |   N  |   M  |   ,  |   .  |   /  |  )/⇧ |
+ * |  (/⇧ |   Z  |   X  |   C  |   V  |   B  |   N  |   M  |   ,  |   .  |   /  |Ret/⇧ |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
  * | Lower| Spc/^|Esc/⌥ |Tab/⌘ |Spc/Lo| Space|Space |Spc/Rs|Left/⌘| Down |  Up  |->/Rse|
  * `-----------------------------------------------------------------------------------'
  */
 [_QWERTY] = LAYOUT_preonic_grid( \
-  KC_GRV,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,     KC_BSPC,
+  KC_GRV,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,     TD(CT_DE),
   KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,     KC_BSPC,
-  CTL_ESC, NAV_A,   KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L,    NAV_SCLN, CTL_RET,
-  KC_LSPO, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH,  KC_RSPC,
-  LOWER,   CTL_SPC, ALT_ESC, GUI_TAB, LOW_SPC, LSF_SPC, RSF_SPC, RSE_SPC, GUI_LEFT,KC_DOWN, KC_UP,    RSE_RGHT
+  CTL_ESC, NAV_A,   KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L,    NAV_SCLN, TD(CT_QE),
+  KC_LSPO, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH,  RSF_RET,
+  LOWER,   CTL_SPC, ALT_ESC, GUI_TAB, LOW_SPC, LSF_SPC, RSF_SPC, RSE_SPC, GUI_LFT, KC_DOWN, KC_UP,    RSE_RGHT
 ),
 
 /* Colemak
@@ -112,22 +123,22 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 /* Colemak1: derived from Colemak Mod-DH, switching KM and rotating BGV
  * (just switch DV and HM w/r to Colemak proper)
  * ,-----------------------------------------------------------------------------------.
- * |   `  |   1  |   2  |   3  |   4  |   5  |   6  |   7  |   8  |   9  |   0  | Bksp |
+ * |   `  |   1  |   2  |   3  |   4  |   5  |   6  |   7  |   8  |   9  |   0  | B/Esc|
  * |------+------+------+------+------+------+------+------+------+------+------+------|
  * |   ⇥  |   Q  |   W  |   F  |   P  |   Z  |   J  |   L  |   U  |   Y  |   ;  | Bksp |
  * |------+------+------+------+------+-------------+------+------+------+------+------|
  * | Esc/^| A/NAV|   R  |   S  |   T  |   G  |   M  |   N  |   E  |   I  | O/NAV| Ret/^|
  * |------+------+------+------+------+------|------+------+------+------+------+------|
- * |  (/⇧ |   X  |   V  |   C  |   D  |   B  |   K  |   H  |   ,  |   .  |   /  | Ret/⇧|
+ * |  (/⇧ |   X  |   C  |   V  |   D  |   B  |   K  |   H  |   ,  |   .  |   /  | Ret/⇧|
  * |------+------+------+------+------+------+------+------+------+------+------+------|
  * | Lower| Spc/^|  ⌥   |   ⌘  | Lower| Space|Space |Raise |Left/⌘| Down |  Up  |->/Rse|
  * `-----------------------------------------------------------------------------------'
  */
 [_COLEMAK1] = LAYOUT_preonic_grid( \
-  KC_GRV,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_BSPC,
-  _______, KC_Q,    KC_W,    KC_F,    KC_P,    KC_Z,    KC_J,    KC_L,    KC_U,    KC_Y,    KC_SCLN, _______,
+  KC_GRV,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    _______,
+  _______, KC_Q,    KC_W,    KC_F,    KC_P,    KC_Z,    TD_JESC, KC_L,    KC_U,    KC_Y,    KC_SCLN, _______,
   _______, NAV_A,   KC_R,    KC_S,    KC_T,    KC_G,    KC_M,    KC_N,    KC_E,    KC_I,    NAV_O,   _______,
-  _______, KC_X,    KC_V,    KC_C,    KC_D,    KC_B,    KC_K,    KC_H,    KC_COMM, KC_DOT,  KC_SLSH, _______,
+  _______, KC_X,    KC_C,    KC_V,    KC_D,    KC_B,    KC_K,    KC_H,    KC_COMM, KC_DOT,  KC_SLSH, _______,
   _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
 ),
 /* Colemak2: derived from Colemak Mod-DH, switching KM and rotating BGV
@@ -182,7 +193,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+------+------+------+------+-------------+------+------+------+------+------|
  * | Tab/^|   1  |   2  |   3  |   4  |   5  |   6  |   7  |   8  |   9  |   0  |  '   |
  * |------+------+------+------+------+------|------+------+------+------+------+------|
- * |      |   [  |   ]  |   `  |   -  |   =  |   \  |   '  |   ,  |   .  |   /  |  \   |
+ * |      |   [  |   ]  |   -  |   =  |   `  |   \  |   '  |   ,  |   .  |   /  |  \   |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
  * | Brite|      |      |      |      |             |      |      | Vol- | Vol+ |  `   |
  * `-----------------------------------------------------------------------------------'
@@ -191,7 +202,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   KC_GRV,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_BSPC,
   KC_GRV,  KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC, KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN, KC_BSPC,
   _______, KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_QUOT,
-  _______, KC_LBRC, KC_RBRC, KC_GRV,  KC_MINS, KC_EQL,  KC_BSLS, KC_QUOT, _______, _______, _______, KC_BSLS,
+  _______, KC_LBRC, KC_RBRC, KC_MINS, KC_EQL,  KC_GRV,  KC_BSLS, KC_QUOT, _______, _______, _______, KC_BSLS,
   BACKLIT, _______, _______, _______, LOWER,   _______, _______, _______, _______, KC_VOLD, KC_VOLU, KC_GRV
 ),
 
@@ -239,6 +250,33 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 )
 
 
+};
+
+void dance_cln_finished (qk_tap_dance_state_t *state, void *user_data) {
+  if (state->count == 1) {
+    register_code (KC_RSFT);
+    register_code (KC_SCLN);
+  } else {
+    register_code (KC_SCLN);
+  }
+}
+
+void dance_cln_reset (qk_tap_dance_state_t *state, void *user_data) {
+  if (state->count == 1) {
+    unregister_code (KC_RSFT);
+    unregister_code (KC_SCLN);
+  } else {
+    unregister_code (KC_SCLN);
+  }
+}
+
+//All tap dance functions would go here. Only showing this one.
+qk_tap_dance_action_t tap_dance_actions[] = {
+    [CT_QE]    = ACTION_TAP_DANCE_DOUBLE (KC_ENT, KC_QUOT)
+  , [CT_CLN]   = ACTION_TAP_DANCE_FN_ADVANCED (NULL, dance_cln_finished, dance_cln_reset)
+  , [CT_DE]    = ACTION_TAP_DANCE_DOUBLE (KC_BSPC, KC_ESC)
+  , [CT_JESC]  = ACTION_TAP_DANCE_DOUBLE (KC_J, KC_ESC)
+// Other declarations would go here, separated by commas, if you have them
 };
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {

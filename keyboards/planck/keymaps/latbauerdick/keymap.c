@@ -53,10 +53,10 @@ enum planck_keycodes {
 
 #define CTL_ESC  MT(MOD_LCTL, KC_ESC)
 #define CTL_TAB  MT(MOD_LCTL, KC_TAB)
-#define CTL_QUOT MT(MOD_LCTL, KC_QUOT)
+#define CTL_QUT  MT(MOD_LCTL, KC_QUOT)
 #define CTL_SPC  MT(MOD_LCTL, KC_SPC)
 #define CTL_RET  MT(MOD_RCTL, KC_ENT)
-#define GUI_LEFT MT(MOD_RGUI, KC_LEFT)
+#define GUI_LFT  MT(MOD_RGUI, KC_LEFT)
 #define GUI_TAB  MT(MOD_LGUI, KC_TAB)
 #define GUI_ESC  MT(MOD_LGUI, KC_ESC)
 #define ALT_ESC  MT(MOD_LALT, KC_ESC)
@@ -64,6 +64,7 @@ enum planck_keycodes {
 #define LSF_TAB  MT(MOD_LSFT, KC_TAB)
 #define RSF_SPC  MT(MOD_RSFT, KC_SPC)
 #define RSF_BSP  MT(MOD_RSFT, KC_BSPC)
+#define RSF_RET  MT(MOD_RSFT, KC_ENT)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
@@ -71,18 +72,18 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * ,-----------------------------------------------------------------------------------.
  * |   ⇥  |   Q  |   W  |   E  |   R  |   T  |   Y  |   U  |   I  |   O  |   P  | Bksp |
  * |------+------+------+------+------+-------------+------+------+------+------+------|
- * | Esc/^| A/NAV|   S  |   D  |   F  |   G  |   H  |   J  |   K  |   L  | ;/NAV| Ret/⌃|
+ * | Esc/^| A/NAV|   S  |   D  |   F  |   G  |   H  |   J  |   K  |   L  | ;/NAV|  '/⌃ |
  * |------+------+------+------+------+------|------+------+------+------+------+------|
- * |  (/⇧ |   Z  |   X  |   C  |   V  |   B  |   N  |   M  |   ,  |   .  |   /  |  )/⇧ |
+ * |  (/⇧ |   Z  |   X  |   C  |   V  |   B  |   N  |   M  |   ,  |   .  |   /  |Ret/⇧ |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
  * | Lower| Spc/^|Esc/⌥ |Tab/⌘ |Spc/Lo| Space|Space |Spc/Rs|Left/⌘| Down |  Up  |->/Rse|
  * `-----------------------------------------------------------------------------------'
  */
 [_QWERTY] = LAYOUT_planck_grid(
   KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,     KC_BSPC,
-  CTL_ESC, NAV_A,   KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L,    NAV_SCLN, CTL_RET,
-  KC_LSPO, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH,  KC_RSPC,
-  LOWER,   CTL_SPC, ALT_ESC, GUI_TAB, LOW_SPC, LSF_SPC, RSF_SPC, RSE_SPC, GUI_LEFT,KC_DOWN, KC_UP,    RSE_RGHT
+  CTL_ESC, NAV_A,   KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L,    NAV_SCLN, CTL_QUT,
+  KC_LSPO, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH,  RSF_RET,
+  LOWER,   CTL_SPC, ALT_ESC, GUI_TAB, LOW_SPC, LSF_SPC, RSF_SPC, RSE_SPC, GUI_LFT, KC_DOWN, KC_UP,    RSE_RGHT
 ),
 
 /* Colemak
@@ -177,7 +178,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+------+------+------+------+-------------+------+------+------+------+------|
  * | Tab/^|   1  |   2  |   3  |   4  |   5  |   6  |   7  |   8  |   9  |   0  |  '   |
  * |------+------+------+------+------+------|------+------+------+------+------+------|
- * |      |   [  |   ]  |   `  |   -  |   =  |   \  |   '  |   ,  |   .  |   /  |  \   |
+ * |      |   [  |   ]  |   -  |   =  |   `  |   \  |   '  |   ,  |   .  |   /  |  \   |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
  * | Brite|      |      |      |      |             |      |      | Vol- | Vol+ |  `   |
  * `-----------------------------------------------------------------------------------'
@@ -185,7 +186,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [_RAISE] = LAYOUT_planck_grid( \
   KC_GRV,  KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC, KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN, KC_BSPC,
   _______, KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_QUOT,
-  _______, KC_LBRC, KC_RBRC, KC_GRV,  KC_MINS, KC_EQL,  KC_BSLS, KC_QUOT, _______, _______, _______, KC_BSLS,
+  _______, KC_LBRC, KC_RBRC, KC_MINS, KC_EQL,  KC_GRV,  KC_BSLS, KC_QUOT, _______, _______, _______, KC_BSLS,
   BACKLIT, _______, _______, _______, LOWER,   _______, _______, _______, _______, KC_VOLD, KC_VOLU, KC_GRV
 ),
 
